@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Карта мест - APlace</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+
+    <header class="header_section">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="APlace" class="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" data-toggle="dropdown">
+                                Категории
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="catalog.html?category=cafe">Кафе</a>
+                                <a class="dropdown-item" href="catalog.html?category=park">Парки</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="catalog.html">Все категории</a>
+                            </div>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="map.html">Карта</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Войти / Регистрация</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary ml-2" href="add-place.html">Добавить место</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="catalog-header">
+        <div class="container">
+            <h1>Карта мест Астрахани</h1>
+            <p>Исследуйте город на интерактивной карте</p>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Левая колонка - фильтры и список мест -->
+            <div class="col-lg-4">
+                <div class="map-sidebar">
+                    <h3>Места на карте</h3>
+                    
+                    <!-- Фильтры для карты -->
+                    <div class="filter-group">
+                        <h4>Категория</h4>
+                        <div class="filter-options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mapCategory" id="mapCatAll" value="all" checked>
+                                <label class="form-check-label" for="mapCatAll">Все категории</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mapCategory" id="mapCatCafe" value="cafe">
+                                <label class="form-check-label" for="mapCatCafe">Кафе</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="mapCategory" id="mapCatPark" value="park">
+                                <label class="form-check-label" for="mapCatPark">Парки</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Поиск -->
+                    <div class="filter-group">
+                        <h4>Поиск</h4>
+                        <input type="text" 
+                               class="form-control search-input" 
+                               id="mapSearchInput" 
+                               placeholder="Поиск мест...">
+                    </div>
+                    
+                    <!-- Список мест -->
+                    <div class="places-list" id="mapPlacesList">
+                        <div class="place-list-item" data-place-id="1">
+                            <div class="place-list-header">
+                                <span class="place-list-category">Кафе</span>
+                                <span class="place-list-rating">★★★★★ 4.8</span>
+                            </div>
+                            <h4 class="place-list-title">Кофейня "Сойка"</h4>
+                            <p class="place-list-address">ул. Кирова, 25</p>
+                            <p class="place-list-desc">Уютное место в центре города с лучшим кофе и домашней выпечкой.</p>
+                            <button class="btn btn-view-on-map" data-marker-id="1">Показать на карте</button>
+                        </div>
+                        
+                        <div class="place-list-item" data-place-id="2">
+                            <div class="place-list-header">
+                                <span class="place-list-category">Парк</span>
+                                <span class="place-list-rating">★★★★☆ 4.5</span>
+                            </div>
+                            <h4 class="place-list-title">Парк "Аркадия"</h4>
+                            <p class="place-list-address">пр. Ленина, 150</p>
+                            <p class="place-list-desc">Современный парк с детскими площадками и велодорожками.</p>
+                            <button class="btn btn-view-on-map" data-marker-id="2">Показать на карте</button>
+                        </div>
+                        
+                        <div class="place-list-item" data-place-id="3">
+                            <div class="place-list-header">
+                                <span class="place-list-category">Кафе</span>
+                                <span class="place-list-rating">★★★★★ 4.9</span>
+                            </div>
+                            <h4 class="place-list-title">Кафе "Крем cafe"</h4>
+                            <p class="place-list-address">ул. Советская, 48</p>
+                            <p class="place-list-desc">Европейская кухня от шеф-повара. Уютная атмосфера.</p>
+                            <button class="btn btn-view-on-map" data-marker-id="3">Показать на карте</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Правая колонка - карта -->
+            <div class="col-lg-8">
+                <div class="map-container-large" id="map">
+                    <!-- Карта будет инициализирована через JavaScript -->
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #ff6b35;"></span>
+                        <span>Кафе</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #4CAF50;"></span>
+                        <span>Парки</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background-color: #2196F3;"></span>
+                        <span>Выбранное место</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="images/logo.png" alt="APlace" class="footer-logo">
+                    <h3>Каталог мест Астрахани</h3>
+                    <p>Наш сервис помогает находить лучшие места города на основе реальных отзывов и оценок пользователей</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>КАТЕГОРИИ</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html?category=cafe">Кафе</a>
+                        <a href="catalog.html?category=park">Парки</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>ССЫЛКИ</h3>
+                    <div class="footer-links">
+                        <a href="about.html">О проекте</a>
+                        <a href="rules.html">Правила</a>
+                        <a href="contact.html">Контакты</a>
+                        <a href="add-place.html">Добавить место</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 APlace. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/map.js"></script>
+    
+</body>
+</html>

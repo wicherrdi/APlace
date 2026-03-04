@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APlace - Каталог мест Астрахани</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header_section">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="APlace" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Главная</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Категории
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="catalog.html?category=cafe">Кафе</a>
+                            <a class="dropdown-item" href="catalog.html?category=park">Парки</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="catalog.html">Все категории</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="map.html">Карта</a>
+                    </li>
+                </ul>
+                <div class="navbar-actions">
+                    <a href="login.html" class="login-text">Войти / Регистрация</a>
+                    <a href="add-place.html" class="btn btn-primary">Добавить место</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <section class="banner_section">
+        <div class="container">
+            <h1 class="discover_text">Откройте</h1>
+            <h1 class="amazing_text">Свой идеальный город</h1>
+            <p class="find_text">Найдите лучшие места Астрахани для отдыха, питания и прогулок с помощью оценок местных жителей!</p>
+            
+            <div class="search-section">
+                <form id="searchForm" action="catalog.html" method="get">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select class="form-control" name="category" id="categorySelect">
+                                <option value="">Выберите категорию</option>
+                                <option value="cafe">Кафе</option>
+                                <option value="park">Парки</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control" name="district" id="districtSelect">
+                                <option value="">Выберите район</option>
+                                <option value="kirov">Кировский</option>
+                                <option value="lenin">Ленинский</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search-button">
+                        <button type="submit" class="btn-search">Найти места</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="top_places_section">
+        <div class="container">
+            <h2 class="section-title">Лучшие <span>места</span> города</h2>
+            <p class="section-subtitle">Самые высоко оцененные пользователями</p>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="place.html?id=1" class="top-place-card">
+                        <div class="place-rank">1</div>
+                        <img src="images/m1.webp" alt="Кофейня Сойка">
+                        <div class="place-info">
+                            <h3>Кофейня "Сойка"</h3>
+                            <div class="place-rating">★★★★★ 4.8</div>
+                            <p>Лучший кофе в городе по мнению пользователей</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="place.html?id=2" class="top-place-card">
+                        <div class="place-rank">2</div>
+                        <img src="images/m2.webp" alt="Парк Театральный">
+                        <div class="place-info">
+                            <h3>Парк Театральный</h3>
+                            <div class="place-rating">★★★★☆ 4.5</div>
+                            <p>Самый популярный парк для семейного отдыха</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="place.html?id=3" class="top-place-card">
+                        <div class="place-rank">3</div>
+                        <img src="images/m3.jpeg" alt="Крем cafe">
+                        <div class="place-info">
+                            <h3>Кафе "Крем cafe"</h3>
+                            <div class="place-rating">★★★★★ 4.9</div>
+                            <p>Идеальное место для романтического ужина</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="catalog.html" class="btn btn-view-all">Смотреть все места</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews_section">
+        <div class="container">
+            <h2 class="section-title">Что говорят <span>пользователи</span></h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="review-text">
+                            "С помощью этого сервиса нашла отличное кафе рядом с работой. Очень удобно!"
+                        </div>
+                        <div class="review-author">
+                            <img src="images/user.webp" alt="Анна">
+                            <div>
+                                <h4>Анна Статина</h4>
+                                <p>Пользователь сервиса</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Отличный способ находить новые места в городе. Особенно нравится система оценок."
+                        </div>
+                        <div class="review-author">
+                            <img src="images/user2.jpg" alt="Мария">
+                            <div>
+                                <h4>Мария Сидорова</h4>
+                                <p>Активный пользователь</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="review-text">
+                            "Как турист, оценила возможность быстро найти хорошие места для посещения!"
+                        </div>
+                        <div class="review-author">
+                            <img src="images/user3.jpg" alt="Николай">
+                            <div>
+                                <h4>Николай Павлов</h4>
+                                <p>Турист</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="images/logo.png" alt="APlace" class="footer-logo">
+                    <h3>Каталог мест Астрахани</h3>
+                    <p>Наш сервис помогает находить лучшие места города на основе реальных отзывов и оценок пользователей</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>КАТЕГОРИИ</h3>
+                    <div class="footer-links">
+                        <a href="catalog.html?category=cafe">Кафе</a>
+                        <a href="catalog.html?category=park">Парки</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>ССЫЛКИ</h3>
+                    <div class="footer-links">
+                        <a href="about.html">О проекте</a>
+                        <a href="rules.html">Правила</a>
+                        <a href="contact.html">Контакты</a>
+                        <a href="add-place.html">Добавить место</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 APlace. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>
